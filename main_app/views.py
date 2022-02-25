@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .models import Finch
+from .models import Toy
 # Create your views here.
 
 def home(request):
@@ -30,3 +32,18 @@ class FinchUpdate(UpdateView):
 class FinchDelete(DeleteView):
     model = Finch
     success_url = '/finches/'
+    
+class ToysList(ListView):
+    model = Toy
+    template_name = 'toys/index.html'
+    context_object_name = 'toys'
+    queryset = Toy.objects.all()
+
+class ToyDetail(DetailView):
+    model = Toy
+    template_name ='toys/detail.html'
+
+class ToyCreate(CreateView):
+    model = Toy
+    fields = '__all__'
+
