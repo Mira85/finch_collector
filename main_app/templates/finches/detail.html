@@ -34,7 +34,7 @@
             <input type="file" name="photo-file">
             <br>
             <br>
-            <input type="submit" value="Upload Photo" class="btn green">
+            <input type="submit" value="Upload Photo" class="btn addBtn">
 
         </form>
     </div>
@@ -42,7 +42,7 @@
         <form action="{% url 'add_feeding' finch.id %}" method="POST">
             {%  csrf_token %}
             {{ feeding_form.as_p }}
-            <input type="submit" value="Add Feeding" class="btn blue">
+            <input type="submit" value="Add Feeding" class="btn addBtn">
         </form>
         <br />
         {% if finch.fed_for_today %}
@@ -88,7 +88,7 @@
                 </span>
                 <form action="{% url 'remove_assoc_toy' finch.id toy.id%}" method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="btn green">Remove</button>
+                    <button type="submit" class="btn red">Remove</button>
                 </form>
             </div>
         </div>
@@ -112,7 +112,7 @@
             <div class="card-action">
                 <form action="{% url 'assoc_toy' finch.id toy.id %}" method="POST">
                     {% csrf_token %}
-                    <button type="submit" class="btn green">Add</button>
+                    <button type="submit" class="btn addBtn">Add</button>
                 </form>
             </div>
         </div>

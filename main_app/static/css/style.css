@@ -9,6 +9,17 @@ body {
  }
  
  footer {
+     display: flex;
+     justify-content: center;
      padding-top: 0;
      text-align: right;
+     padding-bottom:15px;
+ }
+
+ .nav{
+     background-color: #2c3E50;
+ }
+
+ .addBtn {
+     background-color: rgb(51, 167, 181);
  }

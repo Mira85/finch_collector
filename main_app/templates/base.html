@@ -16,9 +16,9 @@
     <script defer src="{% static 'js/script.js' %}"></script>
   </head>
   <body>
-    <header class="navbar-fixed">
+    <header class="navbar-fixed ">
       <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper nav">
           <ul>
             <li>
               <a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;FinchCollector</a>
@@ -35,7 +35,7 @@
       </nav>
     </header>
     <main class="container">{% block content %} {% endblock %}</main>
-    <footer class="page-footer">
+    <footer class="page-footer nav">
       <div class="right">
         All Rights Reserved, &copy; 2022 Finch Collector &nbsp;
       </div>

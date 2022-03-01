@@ -14,7 +14,7 @@
         {{ form.as_table }}
 
     </table>
-    <input class="btn blue" type="submit" value="{% if object %} Edit {% else %} Add {% endif%}">
+    <input class="btn addBtn" type="submit" value="{% if object %} Edit {% else %} Add {% endif%}">
     {% if object %}
     <a class="btn red" href="{% url 'toy_detail' object.id %}">Cancel</a>
     {% else %}

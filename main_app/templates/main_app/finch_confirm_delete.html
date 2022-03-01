@@ -8,7 +8,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <input class="btn red" type="submit" value="Yes-Remove">
-    <a class="btn blue" href="{% url 'detail' object.id %}">Cancel</a>
+    <a class="btn addBtn" href="{% url 'detail' object.id %}">Cancel</a>
 </form>
 
 {% endblock %}
