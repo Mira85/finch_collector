@@ -69,6 +69,10 @@ def add_photo(request, finch_id):
             print('**************************')
 
     return redirect('detail', finch_id=finch_id)
+
+def remove_assoc_toy(request, finch_id, toy_id):
+    Finch.objects.get(id=finch_id).toys.remove(toy_id)
+    return redirect('detail', finch_id=finch_id)
            
     
 

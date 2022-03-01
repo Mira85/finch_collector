@@ -74,6 +74,10 @@
                 <span class="card-title">
                     A <span class="{{ toy.color.lower }}-text"> {{toy.color}}</span> {{ toy.name }}
                 </span>
+                <form action="{% url 'remove_assoc_toy' finch.id toy.id%}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn green">Remove</button>
+                </form>
             </div>
         </div>
         {% endfor %}

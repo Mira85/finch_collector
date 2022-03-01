@@ -17,4 +17,5 @@ urlpatterns = [
     path('finches/<int:finch_id>/add_feeding/', views.add_feeding, name='add_feeding'),
     path('finches/<int:finch_id>/assoc_toy/<int:toy_id>/', views.assoc_toy, name='assoc_toy'),
     path('finches/<int:finch_id>/add_photo', views.add_photo, name='add_photo'),
+    path('finches/<int:finch_id>/remove_assoc_toy/<int:toy_id>/', views.remove_assoc_toy, name='remove_assoc_toy')
 ]
