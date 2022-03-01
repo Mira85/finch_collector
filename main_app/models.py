@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from datetime import date
+
 MEALS =(
     ('B', 'Breakfast'),
     ('L', 'Lunch'),
@@ -30,6 +32,9 @@ class Finch(models.Model):
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'finch_id': self.id})
+
+    def fed_for_today(self):
+        return self.feeding_set.filter(date=date.today()).count() >= len (MEALS)
 
 
 
