@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .models import Finch
-from .models import Toy
+from .models import Finch, Toy, Photo
 from .forms import FeedingForm
-# Create your views here.
+
+import boto3
+import uuid
+
+S3_BASE_URL ='https://s3.us-east-1.amazonaws.com/'
+BUCKET = 'finch-collector1'
+session = boto3.Session(profile_name='finch-collector1')
+
 
 def home(request):
     return render(request, 'home.html')
@@ -42,6 +48,29 @@ def add_feeding(request, finch_id):
 def assoc_toy(request, finch_id, toy_id):
     Finch.objects.get(id=finch_id).toys.add(toy_id)
     return redirect('detail', finch_id=finch_id)
+
+def add_photo(request, finch_id):
+    photo_file = request.FILES.get('photo-file')
+    if photo_file:
+        s3 = session.client('s3')
+        key = uuid.uuid4().hex[:6]+ photo_file.name[photo_file.name.rfind('.'):]
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+
+            photo = Photo(url=url, finch_id=finch_id)
+
+            photo.save()
+
+        except Exception as error:
+            print('**************************')
+            print('An error occurred while upoading to S3')
+            print(error)
+            print('**************************')
+
+    return redirect('detail', finch_id=finch_id)
+           
+    
 
 class FinchCreate(CreateView):
     model = Finch
